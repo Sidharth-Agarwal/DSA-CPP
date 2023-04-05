@@ -59,6 +59,11 @@ void print(Node* head)
     }
 }
 
+void insert(Node* &head)
+{
+    
+}
+
 int main()
 {
     Node *head = takeInput();

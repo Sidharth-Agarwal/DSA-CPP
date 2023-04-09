@@ -68,25 +68,35 @@ Node* reverse(Node* head)
     return prev;
 }
 
-void print(Node* head)
-{
-    while(head)
-    {
-        cout << head->data << " ";
-        head = head->next;
-    }
-    cout << endl;
-}
-
 bool checkPalindrome(Node* head)
 {
     Node *start = head;
     Node *end = reverse(head);
 
-    
+    while(start!=NULL && end!=NULL)
+    {
+        if(start->data != end->data)
+        {
+            return false;
+        }
+
+        start = start->next;
+        end = end->next;
+    }
+
+    return true;
 }
 
 int main()
 {
     Node *head = takeInput();
+
+    if(checkPalindrome(head))
+    {
+        cout << "The given linked list is palindrome";
+    }
+    else
+    {
+        cout << "The given linked list is not palindrome";
+    }
 }

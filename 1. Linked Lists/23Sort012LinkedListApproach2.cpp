@@ -129,6 +129,27 @@ Node* sort012(Node* head)
         return twoHead;
     }
 
+    if(zeroHead != NULL && oneHead == NULL && twoHead != NULL)
+    {
+        zeroTail->next = twoHead;
+        twoTail->next = NULL;
+        return zeroHead;
+    }
+
+    if(zeroHead == NULL && oneHead != NULL && twoHead != NULL)
+    {
+        oneTail->next = twoHead;
+        twoTail->next = NULL;
+        return oneHead;
+    }
+
+    if(zeroHead != NULL && oneHead != NULL && twoHead == NULL)
+    {
+        zeroTail->next = oneHead;
+        oneTail->next = NULL;
+        return zeroHead;
+    }
+
     zeroTail->next = oneHead;
     oneTail->next = twoHead;
     twoTail->next = NULL;

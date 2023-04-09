@@ -56,30 +56,54 @@ Node* evenOdd(Node* head)
 
     while(temp)
     {
-        if(temp->data % 2 == 0)
+        if(temp->data % 2 != 0)
         {
+            if(oddHead == NULL)
+            {
+                oddHead = temp;
+                oddTail = temp;
+            }
 
+            else
+            {
+                oddTail->next = temp;
+                oddTail = oddTail->next;
+            }
         }
 
         else
         {
+            if(evenHead == NULL)
+            {
+                evenHead = temp;
+                evenTail = temp;
+            }
 
+            else
+            {
+                evenTail->next = temp;
+                evenTail = evenTail->next;
+            }
         }
 
         temp = temp->next;
     }
 
-    if(oddHead == NULL)
+    if (oddHead == NULL) 
+    { 
+        return evenHead; 
+    } 
+    else 
     {
-        evenTail->next = NULL;
-        return evenHead;
+        oddTail->next = evenHead; 
     }
-    else
-    {
-        oddTail->next = evenHead;
+    
+    if (evenHead != NULL) 
+    { 
         evenTail->next = NULL;
-        return oddHead;
-    }    
+    }
+    
+    return oddHead; 
 }
 
 void print(Node* head)

@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
@@ -45,43 +46,50 @@ Node* takeInput()
     return head;
 }
 
-Node* reverse(Node* head)
+bool palindrome(vector<int> arr)
 {
-    if(head == NULL || head->next == NULL)
+    int n = arr.size();
+    int start = 0;
+    int end = n - 1;
+
+    while(start <= end)
     {
-        return head;
+        if(arr[start] != arr[end])
+        {
+            return false;
+        }
+        start++;
+        end--;
     }
 
-    Node *prev = NULL;
-    Node *fwd = NULL;
-    Node *curr = head;
-
-    while(curr!=NULL)
-    {
-        fwd = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = fwd;
-    }
-
-    return prev;
+    return true;
 }
 
-void print(Node* head)
+bool checkPalindrome(Node* head)
 {
-    while(head)
+    vector<int> arr;
+
+    Node *temp = head;
+
+    while(temp)
     {
-        cout << head->data << " ";
-        head = head->next;
+        arr.push_back(temp->data);
+        temp = temp->next;
     }
+
+    return palindrome(arr);
 }
 
 int main()
 {
     Node *head = takeInput();
 
-    Node *rev = reverse(head);
-
-    cout << "The reverse of the entered linked list is : ";
-    print(rev);
+    if(checkPalindrome(head))
+    {
+        cout << "The given linked list is palindrome";
+    }
+    else
+    {
+        cout << "The given linked list is not palindrome";
+    }
 }

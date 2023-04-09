@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
@@ -74,14 +75,18 @@ void print(Node* head)
         cout << head->data << " ";
         head = head->next;
     }
+    cout << endl;
+}
+
+bool checkPalindrome(Node* head)
+{
+    Node *start = head;
+    Node *end = reverse(head);
+
+    
 }
 
 int main()
 {
     Node *head = takeInput();
-
-    Node *rev = reverse(head);
-
-    cout << "The reverse of the entered linked list is : ";
-    print(rev);
 }

@@ -11,11 +11,11 @@ class Stack
 
     public:
 
-    Stack(int totalSize)
+    Stack()
     {
-        data = new int[totalSize];
+        data = new int[4];
         nextIndex = 0;
-        capacity = totalSize;
+        capacity = 4;
     }
 
     int size()
@@ -43,8 +43,16 @@ class Stack
     {
         if(nextIndex == capacity)
         {
-            cout << "Stack Full" << endl;
-            return;
+            int *newData = new int[2 * capacity];
+
+            for (int i = 0; i < capacity; i++)
+            {
+                newData[i] = data[i];
+            }
+
+            capacity *= 2;
+            delete[] data;
+            data = newData;
         }
 
         data[nextIndex] = element;
@@ -55,7 +63,7 @@ class Stack
     {
         if(isEmpty())
         {
-            cout << "Stack Empty" << endl;
+            cout<<"Stack is empty"<<endl;
             return INT_MIN;
         }
 
@@ -66,7 +74,7 @@ class Stack
 
 int main()
 {
-    Stack s(4);
+    Stack s;
 
     s.push(10);
     s.push(20);

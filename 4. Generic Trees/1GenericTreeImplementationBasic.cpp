@@ -4,31 +4,31 @@
 using namespace std;
 
 template<typename T>
-class Node
+class TreeNode
 {
     public:
     T data;
-    vector<Node<T>*> children;
+    vector<TreeNode<T> *> children;
 
-    Node(T data)
+    TreeNode(T data)
     {
         this->data = data;
     }
 
-    ~Node()
+    ~TreeNode()
     {
-        for (int i = 0; i < children.size();i++)
+        for (int i = 0; i < children.size(); i++)
         {
             delete children[i];
         }
     }
 };
 
-void printTree(Node<int>* root)
+void printTree(TreeNode<int>* root)
 {
     cout << root->data << endl;
 
-    for (int i = 0; i < root->children.size();i++)
+    for (int i = 0; i < root->children.size(); i++)
     {
         printTree(root->children[i]);
     }
@@ -36,9 +36,9 @@ void printTree(Node<int>* root)
 
 int main()
 {
-    Node<int> *root = new Node<int>(10);
-    Node<int> *child1 = new Node<int>(20);
-    Node<int> *child2 = new Node<int>(30);
+    TreeNode<int> *root = new TreeNode<int>(10);
+    TreeNode<int> *child1 = new TreeNode<int>(20);
+    TreeNode<int> *child2 = new TreeNode<int>(30);
     root->children.push_back(child1);
     root->children.push_back(child2);
 }

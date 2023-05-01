@@ -1,44 +1,20 @@
 #include<iostream>
-#include<vector>
+#include "0TreeNode.h"
 
 using namespace std;
 
-template<typename T>
-class TreeNode
+int mian()
 {
-    public:
-    T data;
-    vector<TreeNode<T> *> children;
+    TreeNode<int>* root = new TreeNode<int>(1);
+    TreeNode<int>* node1 = new TreeNode<int>(2);
+    TreeNode<int>* node2 = new TreeNode<int>(3);
 
-    TreeNode(T data)
-    {
-        this->data = data;
-    }
+    root->children.push_back(node1);
+    root->children.push_back(node2);
 
-    ~TreeNode()
-    {
-        for (int i = 0; i < children.size(); i++)
-        {
-            delete children[i];
-        }
-    }
-};
-
-void printTree(TreeNode<int>* root)
-{
-    cout << root->data << endl;
-
-    for (int i = 0; i < root->children.size(); i++)
-    {
-        printTree(root->children[i]);
-    }
-}
-
-int main()
-{
-    TreeNode<int> *root = new TreeNode<int>(10);
-    TreeNode<int> *child1 = new TreeNode<int>(20);
-    TreeNode<int> *child2 = new TreeNode<int>(30);
-    root->children.push_back(child1);
-    root->children.push_back(child2);
+    cout << root->data;
+    cout << endl;
+    cout << node1->data;
+    cout << endl;
+    cout << node2->data;
 }

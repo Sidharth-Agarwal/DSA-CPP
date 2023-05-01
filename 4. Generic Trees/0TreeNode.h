@@ -4,18 +4,18 @@
 using namespace std;
 
 template<typename T>
-class Node
+class TreeNode
 {
     public:
     T data;
-    vector<Node<T>*> children;
+    vector<TreeNode<T>*> children;
 
-    Node(T data)
+    TreeNode(T data)
     {
         this->data = data;
     }
 
-    ~Node()
+    ~TreeNode()
     {
         for (int i = 0; i < children.size();i++)
         {

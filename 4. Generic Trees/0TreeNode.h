@@ -8,7 +8,7 @@ class Node
 {
     public:
     T data;
-    vector<Node<T> *> children;
+    vector<Node<T>*> children;
 
     Node(T data)
     {

@@ -17,7 +17,7 @@ class Node
 
     ~Node()
     {
-        for(int i=0;i<children.size())
+        for (int i = 0; i < children.size();i++)
         {
             delete chilren[i];
         }

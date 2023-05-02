@@ -70,25 +70,18 @@ void printTree(TreeNode<int>* root)
     }
 }
 
-void postOrder(TreeNode<int>* root)
+void deleteTree(TreeNode<int>* root) 
 {
-    if(root == NULL)
+	for (int i = 0; i < root->children.size(); i++) 
     {
-        return;
-    }
-
-    for (int i = 0; i < root->children.size(); i++)
-    {
-        postOrder(root->children[i]);
-    }
-
-    cout << root->data << " ";
+		deleteTree(root->children[i]);
+	}
+	delete root;
 }
 
 int main()
 {
     TreeNode<int> *root = takeInput();
     printTree(root);
-    cout << "The Post-Order traversal of the given tree is : ";
-    postOrder(root);
+    
 }

@@ -70,25 +70,24 @@ void printTree(TreeNode<int>* root)
     }
 }
 
-void preOrder(TreeNode<int>* root)
+void postOrder(TreeNode<int>* root)
 {
     if(root == NULL)
     {
         return;
     }
 
-    cout << root->data << " ";
-
     for (int i = 0; i < root->children.size(); i++)
     {
-        preOrder(root->children[i]);
+        postOrder(root->children[i]);
     }
+
+    cout << root->data << " ";
 }
 
 int main()
 {
     TreeNode<int> *root = takeInput();
     printTree(root);
-    cout << "The Pre-Order Traversal of the given tree is : ";
-    preOrder(root);
+    cout << "The Post-Order traversal of the given tree is : ";
 }

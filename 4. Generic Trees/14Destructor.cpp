@@ -83,5 +83,5 @@ int main()
 {
     TreeNode<int> *root = takeInput();
     printTree(root);
-    
+    deleteTree(root);
 }

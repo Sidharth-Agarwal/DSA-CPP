@@ -95,4 +95,10 @@ int main()
 {
     TreeNode<int> *root = takeInput();
     printTree(root);
+
+    int node;
+    cout<<"Enter a node : ";
+    cin>>node;
+
+    cout<<"The number of nodes greater than "<<node;
 }

@@ -1,6 +1,5 @@
 #include<iostream>
 #include<queue>
-#include<vector>
 #include"0TreeNode.h"
 
 using namespace std;
@@ -68,9 +67,81 @@ void printTree(TreeNode<int>* root)
     }
 }
 
+void printLevelAtNewLine(TreeNode<int>* root)
+{
+    queue<TreeNode<int>*> pendingNodes;
+    pendingNodes.push(root);
+    pendingNodes.push(NULL);
 
+    while(pendingNodes.size() != 0)
+    {
+        TreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        if(front == NULL)
+        {
+            if(pendingNodes.empty())
+            {
+                break;
+            }
+
+            pendingNodes.push(NULL);
+            cout << endl;
+            continue;
+        }
+
+        cout << front->data << " ";
+
+        for (int i = 0; i < front->children.size();i++)
+        {
+            pendingNodes.push(front->children[i]);
+        }
+    }
+}
+
+// void replaceWithDepthHelper(TreeNode<int> *root, int depth)
+// {
+//     root->data = depth;
+
+//     for(int i=0; i<root->children.size();i++)
+//     {
+//         replaceWithDepthHelper(root->children[i],depth+1);
+//     }
+// }
+
+// void replaceWithDepthValue(TreeNode<int> *root)
+// {
+//     if(root == NULL)
+//     {
+//         return;
+//     }
+
+//     replaceWithDepthHelper(root,0);
+// }
+
+void replaceWithDepthHelper(TreeNode<int> *root, int depth)
+{
+    root->data = depth;
+
+    for (int i = 0; i < root->children.size();i++)
+    {
+        replaceWithDepthHelper(root->children[i], depth + 1);
+    }
+}
+
+void replaceWithDepth(TreeNode<int>* root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    replaceWithDepthHelper(root, 0);
+}
 
 int main()
 {
     TreeNode<int> *root = takeInput();
+    replaceWithDepth(root);
+    printLevelAtNewLine(root);
 }

@@ -6,7 +6,8 @@ using namespace std;
 BinaryTreeNode<int>* takeInput()
 {
     int rootData;
-    cout << "Enter data : ";
+
+    cout<<"Enter data : ";
     cin >> rootData;
 
     if(rootData == -1)
@@ -15,10 +16,10 @@ BinaryTreeNode<int>* takeInput()
     }
 
     BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
-    BinaryTreeNode<int> *leftChild = takeInput();
+    BinaryTreeNode<int> *leftchild = takeInput();
     BinaryTreeNode<int> *rightChild = takeInput();
 
-    root->left = leftChild;
+    root->left = leftchild;
     root->right = rightChild;
 
     return root;

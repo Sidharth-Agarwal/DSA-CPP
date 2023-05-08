@@ -8,7 +8,7 @@ using namespace std;
 TreeNode<int>* takeInput()
 {
     int rootData;
-    cout << "Enter the root : ";
+    cout << "Enter the root data : ";
     cin >> rootData;
 
     TreeNode<int> *root = new TreeNode<int>(rootData);
@@ -21,14 +21,15 @@ TreeNode<int>* takeInput()
         TreeNode<int> *front = pendingNodes.front();
         pendingNodes.pop();
 
+        cout << "Enter the number of the children of " << front->data << " : ";
+
         int num;
-        cout << "Ente the number of children of " << front->data<<" : ";
         cin >> num;
 
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < num;i++)
         {
             int childData;
-            cout << "Enter " << i << " th child of " << front->data << " : ";
+            cout << "Enter the " << i << "th child of " << front->data << " : ";
             cin >> childData;
 
             TreeNode<int> *child = new TreeNode<int>(childData);
@@ -36,6 +37,7 @@ TreeNode<int>* takeInput()
             pendingNodes.push(child);
         }
     }
+
     return root;
 }
 

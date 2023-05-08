@@ -101,7 +101,7 @@ void print(BinaryTreeNode<int>* root)
     }
 }
 
-void inOrder(BinaryTreeNode<int>* root)
+void preOrder(BinaryTreeNode<int>* root)
 {
     
 }
@@ -111,5 +111,5 @@ int main()
     BinaryTreeNode<int> *root = takeInput();
     print(root);
 
-    inOrder(root);
+    preOrder(root);
 }

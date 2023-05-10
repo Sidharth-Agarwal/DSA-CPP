@@ -1,0 +1,141 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<math.h>
+#include<cstdlib>
+#include"0BinaryTreeNode.h"
+
+using namespace std;
+BinaryTreeNode<int>* takeInput()
+{
+    int rootData;
+    cout << "Enter the root data : ";
+    cin >> rootData;
+
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
+
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+
+    while(pendingNodes.size()!=0)
+    {
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        cout << "Enter the left child of " << front->data << " : ";
+        int leftChildData;
+        cin >> leftChildData;
+
+        if(leftChildData!=-1)
+        {
+            BinaryTreeNode<int> *leftChild = new BinaryTreeNode<int>(leftChildData);
+            pendingNodes.push(leftChild);
+            front->left = leftChild;
+        }
+
+        cout << "Enter the right child of " << front->data << " : ";
+        int rightChildData;
+        cin >> rightChildData;
+
+        if(rightChildData!=-1)
+        {
+            BinaryTreeNode<int> *rightChild = new BinaryTreeNode<int>(rightChildData);
+            pendingNodes.push(rightChild);
+            front->right = rightChild;
+        }
+    }
+
+    return root;
+}
+
+void print(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+
+    while(pendingNodes.size()!=0)
+    {
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        if(front == NULL)
+        {
+            cout<<endl;
+
+            if(!pendingNodes.empty())
+            {
+                pendingNodes.push(NULL);
+            }
+        }
+
+        else
+        {
+            cout << front->data << ":";
+            cout << "L:";
+
+            if(front->left)
+            {
+                pendingNodes.push(front->left);
+                cout << front->left->data << ",";
+            }
+            else
+            {
+                cout << -1 << ",";
+            }
+
+            cout << "R:";
+
+            if(front->right)
+            {
+                pendingNodes.push(front->right);
+                cout << front->right->data << endl;
+            }
+            else
+            {
+                cout << -1 << endl;
+            }
+        }
+    }
+}
+
+int height(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+
+    return 1 + max(height(root->left), height(root->right));
+}
+
+pair<int,int> getMinMax(BinaryTreeNode<int>* root)
+{
+    pair<int, int> ans = make_pair(INT_MIN, INT_MAX);
+
+    if(root == NULL)
+    {
+        return ans;
+    }
+
+    pair<int, int> leftAns = getMinMax(root->left);
+    pair<int, int> rightAns = getMinMax(root->right);
+
+    ans.first = min(min(leftAns.first, rightAns.first), root->data);
+    ans.second = max(max(leftAns.second, rightAns.second), root->data);
+
+    return ans;
+}
+
+int main()
+{
+    BinaryTreeNode<int> *root = takeInput();
+    print(root);
+
+    pair<int, int> ans = getMinMax(root);
+    cout << "The minimum node of the binary tree is : " << ans.first;
+    cout << "The maximum node of the binary tree is : " << ans.second;
+}

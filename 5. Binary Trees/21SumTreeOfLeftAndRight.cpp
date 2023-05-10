@@ -1,3 +1,5 @@
+// This code is to check if the sum of the nodes of left and right sub-trees is eqaul to their parent nodes
+
 #include<iostream>
 #include<bits/stdc++.h>
 #include<math.h>
@@ -102,7 +104,51 @@ void print(BinaryTreeNode<int>* root)
     }
 }
 
+pair<bool,int> isSumTrueHelper(BinaryTreeNode<int>* root)
+{   
+    // base case
+    if(root == NULL)
+    {
+        pair<bool, int> p = make_pair(true, 0);
+        return p;
+    }
 
+    // leaf node
+    if(root->left == NULL && root->right == NULL)
+    {
+        pair<bool, int> p = make_pair(true, root->data);
+        return p;
+    }
+
+    pair<bool, int> left = isSumTrueHelper(root->left);
+    pair<bool, int> right = isSumTrueHelper(root->right);
+
+    bool leftAns = left.first;
+    bool rightAns = right.first;
+
+    bool condition = root->data == left.second + right.second;
+
+    pair<bool, int> ans;
+
+    if(leftAns && rightAns && condition)
+    {
+        ans.first = true;
+        ans.second = root->data + left.second + right.second;
+        // ans.second = 2*root-data
+    }
+
+    else
+    {
+        ans.first = false;
+    }
+
+    return ans;
+}
+
+bool isSumTrue(BinaryTreeNode<int>* root)
+{
+    return isSumTrueHelper(root).first;
+}
 
 int main()
 {

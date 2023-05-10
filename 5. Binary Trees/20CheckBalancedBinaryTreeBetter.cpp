@@ -153,5 +153,12 @@ int main()
     BinaryTreeNode<int> *root = takeInput();
     print(root);
 
-
+    if(isBalanced(root))
+    {
+        cout << "The binary tree is balanced";
+    }
+    else
+    {
+        cout << "The binary tree is not balanced";
+    }
 }

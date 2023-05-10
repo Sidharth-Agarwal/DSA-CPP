@@ -142,8 +142,7 @@ int main()
 {
     BinaryTreeNode<int> *root = takeInput();
     print(root);
-
-    
+    printLevelInNewLine(root);
 }
 
 // 1 2 3 -1 -1 4 5 -1 -1 -1 -1

@@ -114,7 +114,7 @@ int height(BinaryTreeNode<int>* root)
 
 pair<int,int> getMinMax(BinaryTreeNode<int>* root)
 {
-    pair<int, int> ans = make_pair(INT_MIN, INT_MAX);
+    pair<int, int> ans = make_pair(INT_MAX, INT_MIN);
 
     if(root == NULL)
     {

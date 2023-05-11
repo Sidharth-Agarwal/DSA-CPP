@@ -102,29 +102,10 @@ void print(BinaryTreeNode<int>* root)
     }
 }
 
-BinaryTreeNode<int>* removeLeafNodes(BinaryTreeNode<int>* root)
-{
-    if(root == NULL)
-    {
-        return root;
-    }
 
-    if(root->left == NULL || root->right == NULL)
-    {
-        return NULL;
-    }
-
-    root->left = removeLeafNodes(root->left);
-    root->right = removeLeafNodes(root->right);
-    return root;
-}
 
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
-    print(root);
-
-    BinaryTreeNode<int> *newRoot = removeLeafNodes(root);
-    cout << "The updated binary tree is : " << endl;
     print(root);
 }

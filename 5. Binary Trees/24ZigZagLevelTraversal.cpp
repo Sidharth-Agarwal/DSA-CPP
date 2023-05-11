@@ -102,10 +102,68 @@ void print(BinaryTreeNode<int>* root)
     }
 }
 
+vector<int> zigZagTraversal(BinaryTreeNode<int>* root)
+{
+    vector<int> result;
 
+    if(root == NULL)
+    {
+        return result;
+    }
+
+    queue<BinaryTreeNode<int> *> level;
+    level.push(root);
+
+    bool leftToRight = true;
+
+    while(!level.empty())
+    {
+        // Temporary vector for a particular level
+        int size = level.size();
+        vector<int> ans(size);
+
+        // Level Processing
+        for (int i = 0; i < size;i++)
+        {
+            BinaryTreeNode<int> *front = level.front();
+            level.pop();
+
+            int index = leftToRight ? i : size - i - 1;
+            ans[index] = front->data;
+
+            if(front->left)
+            {
+                level.push(front->left);
+            }
+
+            if(front->right)
+            {
+                level.push(front->right);
+            }
+        }
+
+        // Direction change
+        leftToRight = !leftToRight;
+
+        // Updating the result vector
+        for(auto i:ans)
+        {
+            result.push_back(i);
+        }
+    }
+
+    return result;
+}
 
 int main()
 {
     BinaryTreeNode<int> *root = takeInput();
     print(root);
+
+    vector<int> zigZag = zigZagTraversal(root);
+
+    for (int i = 0; i < zigZag.size();i++)
+    {
+        cout << zigZag[i] << " ";
+    }
 }

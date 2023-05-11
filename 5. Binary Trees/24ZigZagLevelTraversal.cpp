@@ -162,6 +162,7 @@ int main()
 
     vector<int> zigZag = zigZagTraversal(root);
 
+    cout << "The zig-zag traversal of the binary tree is : ";
     for (int i = 0; i < zigZag.size();i++)
     {
         cout << zigZag[i] << " ";

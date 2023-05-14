@@ -1,0 +1,149 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<math.h>
+#include<cstdlib>
+#include<climits>
+#include"0BinaryTreeNode.h"
+
+using namespace std;
+BinaryTreeNode<int>* takeInput()
+{
+    int rootData;
+    cout << "Enter the root data : ";
+    cin >> rootData;
+
+    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(rootData);
+
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+
+    while(pendingNodes.size()!=0)
+    {
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        cout << "Enter the left child of " << front->data << " : ";
+        int leftChildData;
+        cin >> leftChildData;
+
+        if(leftChildData!=-1)
+        {
+            BinaryTreeNode<int> *leftChild = new BinaryTreeNode<int>(leftChildData);
+            pendingNodes.push(leftChild);
+            front->left = leftChild;
+        }
+
+        cout << "Enter the right child of " << front->data << " : ";
+        int rightChildData;
+        cin >> rightChildData;
+
+        if(rightChildData!=-1)
+        {
+            BinaryTreeNode<int> *rightChild = new BinaryTreeNode<int>(rightChildData);
+            pendingNodes.push(rightChild);
+            front->right = rightChild;
+        }
+    }
+
+    return root;
+}
+
+void print(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    {
+        return;
+    }
+
+    queue<BinaryTreeNode<int> *> pendingNodes;
+    pendingNodes.push(root);
+
+    while(pendingNodes.size()!=0)
+    {
+        BinaryTreeNode<int> *front = pendingNodes.front();
+        pendingNodes.pop();
+
+        if(front == NULL)
+        {
+            cout<<endl;
+
+            if(!pendingNodes.empty())
+            {
+                pendingNodes.push(NULL);
+            }
+        }
+
+        else
+        {
+            cout << front->data << ":";
+            cout << "L:";
+
+            if(front->left)
+            {
+                pendingNodes.push(front->left);
+                cout << front->left->data << ",";
+            }
+            else
+            {
+                cout << -1 << ",";
+            }
+
+            cout << "R:";
+
+            if(front->right)
+            {
+                pendingNodes.push(front->right);
+                cout << front->right->data << endl;
+            }
+            else
+            {
+                cout << -1 << endl;
+            }
+        }
+    }
+}
+
+void sumOfTheLongestBloodLineOfATreeHelper(BinaryTreeNode<int>* root, int sum, int &maxSum, int len, int &maxLen)
+{
+    if(root == NULL)
+    {
+        if(len > maxLen)
+        {
+            maxSum = sum;
+            maxLen = len;
+        }
+
+        else if(len == maxLen)
+        {
+            maxSum = max(sum, maxSum);
+        }
+
+        return;
+    }
+
+    sum = sum + root->data;
+
+    sumOfTheLongestBloodLineOfATreeHelper(root->left, sum, maxSum, len + 1, maxLen);
+    sumOfTheLongestBloodLineOfATreeHelper(root->right, sum, maxSum, len + 1, maxLen);
+} 
+
+int sumOfTheLongestBloodLineOfATree(BinaryTreeNode<int>* root)
+{
+    int len = 0;
+    int sum = 0;
+    
+    int maxLen = 0;
+    int maxSum = INT_MIN;
+
+    sumOfTheLongestBloodLineOfATreeHelper(root, sum, maxSum, len, maxLen);
+    return maxSum;
+}
+
+int main()
+{
+    BinaryTreeNode<int> *root = takeInput();
+    print(root);
+
+    int longestBloodLine = sumOfTheLongestBloodLineOfATree(root);
+    cout << "The longest blood line of the binary tree is : " << longestBloodLine;
+}

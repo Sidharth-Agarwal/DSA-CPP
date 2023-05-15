@@ -102,56 +102,6 @@ void print(BinaryTreeNode<int>* root)
     }
 }
 
-vector<int> verticalTraversal(BinaryTreeNode<int>* root)
-{
-    map<int, map<int, vector<int> > > nodes;
-    queue<pair<BinaryTreeNode<int> *, pair<int, int> > > pending;
-
-    vector<int> ans;
-
-    if(root == NULL)
-    {
-        return ans;
-    }
-
-    pending.push(make_pair(root, make_pair(0, 0)));
-
-    while(!pending.empty())
-    {
-        pair<BinaryTreeNode<int> *, pair<int, int>> temp = pending.front();
-        pending.pop();
-
-        BinaryTreeNode<int> *frontNode = temp.first;
-        int horiontalDistance = temp.second.first;
-        int level = temp.second.second;
-
-        nodes[horiontalDistance][level].push_back(frontNode->data);
-        
-        if(frontNode->left)
-        {
-            pending.push(make_pair(frontNode->left, make_pair(horiontalDistance-1,level+1)));
-        }
-
-        if(frontNode->right)
-        {
-            pending.push(make_pair(frontNode->right, make_pair(horiontalDistance + 1, level + 1)));
-        }
-    }
-
-    for(auto i:nodes)
-    {
-        for(auto j:i.second)
-        {
-            for(auto k:j.second)
-            {
-                ans.push_back(k);
-            }
-        }
-    }
-
-    return ans;
-}
-
 void leftViewHelper(BinaryTreeNode<int>* root, vector<int> ans, int level)
 {
     if(root == NULL)

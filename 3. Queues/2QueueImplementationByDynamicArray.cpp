@@ -6,8 +6,8 @@ using namespace std;
 class Queue
 {
     int *data;
-    int firstIndex;
-    int nextIndex;
+    int front;
+    int rear;
     int size;
     int capacity;
 
@@ -15,24 +15,24 @@ class Queue
 
     Queue(int s)
     {
-        data = new int[s];
-        firstIndex = -1;
-        nextIndex = 0;
         size = 0;
+        front = -1;
+        rear = 0;
+        data = new int[s];
         capacity = s;
-    }
-
-    int getSize()
-    {
-        return size;
     }
 
     bool isEmpty()
     {
         return size == 0;
     }
+
+    int getSize()
+    {
+        return size;
+    }
     
-    int front()
+    int frontNode()
     {
         if(isEmpty())
         {
@@ -40,24 +40,24 @@ class Queue
             return INT_MIN;
         }
 
-        return data[firstIndex];
+        return data[front];
     }
 
     void enqueue(int element)
     {
         if(size == capacity)
         {
-            int *newData = new int[2 * capacity];
+            int *newData = new int[2*capacity];
 
             int j = 0;
 
-            for (int i = firstIndex; i < capacity;i++)
+            for (int i = front; i < capacity;i++)
             {
                 newData[j] = data[i];
                 j++;
             }
 
-            for (int i = 0; i < firstIndex;i++)
+            for (int i = 0; i < front;i++)
             {
                 newData[j] = data[i];
                 j++;
@@ -65,17 +65,17 @@ class Queue
 
             delete[] data;
             data = newData;
-            firstIndex = 0;
-            nextIndex = capacity;
+            rear = capacity;
+            front = 0;
             capacity *= 2;
         }
 
-        data[nextIndex] = element;
-        nextIndex = (nextIndex + 1) % capacity;
-        
-        if(firstIndex == -1)
+        data[rear] = element;
+        rear = (rear + 1) % capacity;
+
+        if (front == -1)
         {
-            firstIndex = 0;
+            front = 0;
         }
 
         size++;
@@ -89,16 +89,37 @@ class Queue
             return INT_MIN;
         }
 
-        int ans = data[firstIndex];
-        firstIndex = (firstIndex+1)%capacity;
+        int ans = data[front];
+        front = (front + 1) % capacity;
         size--;
 
         if(size == 0)
         {
-            firstIndex = -1;
-            nextIndex = 0;
+            front = -1;
+            rear = 0;
         }
 
         return ans;
     }
 };
+
+int main()
+{
+    Queue q(5);
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    q.enqueue(60);
+
+    cout<<q.frontNode()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+    cout<<q.dequeue()<<endl;
+
+    cout<<q.getSize()<<endl;
+
+    cout<<q.isEmpty()<<endl;
+}

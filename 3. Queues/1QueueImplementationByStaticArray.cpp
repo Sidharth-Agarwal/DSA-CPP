@@ -6,8 +6,8 @@ using namespace std;
 class Queue
 {
     int *data;
-    int nextIndex;
-    int firstIndex;
+    int front;
+    int rear;
     int size;
     int capacity;
 
@@ -16,15 +16,10 @@ class Queue
     Queue(int s)
     {
         data = new int[s];
-        nextIndex = 0;
-        firstIndex = -1;
+        front = -1;
+        rear = 0;
         size = 0;
         capacity = s;
-    }
-
-    int getSize()
-    {
-        return size;
     }
 
     bool isEmpty()
@@ -32,15 +27,20 @@ class Queue
         return size == 0;
     }
 
-    int front()
+    int getSize()
     {
-        if(size == 0)
+        return size;
+    }
+
+    int frontNode()
+    {
+        if(isEmpty())
         {
-            cout << "Queue is empty";
+            cout << "Queue is empty" << endl;
             return INT_MIN;
         }
 
-        return data[firstIndex];
+        return data[front];
     }
 
     void enqueue(int element)
@@ -51,33 +51,32 @@ class Queue
             return;
         }
 
-        data[nextIndex] = element;
-        nextIndex = (nextIndex + 1) % capacity;
-
-        if(firstIndex == -1)
-        {
-            firstIndex = 0;
-        }
-
+        data[rear] = element;
         size++;
+        rear = (rear + 1) % capacity;
+        
+        if(front == -1)
+        {
+            front = 0;
+        }
     }
 
     int dequeue()
     {
         if(isEmpty())
         {
-            cout << "Queue is empty";
+            cout << "Queue is empty" << endl;
             return INT_MIN;
         }
 
-        int ans = data[firstIndex];
-        firstIndex = (firstIndex + 1) % capacity;
+        int ans = data[front];
+        front = (front + 1) % capacity;
         size--;
 
         if(size == 0)
         {
-            firstIndex = -1;
-            nextIndex = 0;
+            front = -1;
+            rear = 0;
         }
 
         return ans;
@@ -95,7 +94,7 @@ int main()
     q.enqueue(50);
     q.enqueue(60);
 
-    cout<<q.front()<<endl;
+    cout<<q.frontNode()<<endl;
     cout<<q.dequeue()<<endl;
     cout<<q.dequeue()<<endl;
     cout<<q.dequeue()<<endl;

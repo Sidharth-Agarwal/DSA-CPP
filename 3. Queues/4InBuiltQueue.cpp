@@ -20,7 +20,8 @@ int main()
 
 	while(!q.empty()) 
 	{
-		cout << q.front() << endl;
+		cout << "size : " << q.size() << endl;
+		cout << "Front : " << q.front() << endl;
 		q.pop();
 	}
 }

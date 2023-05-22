@@ -22,6 +22,7 @@ int main()
 	{
 		cout << "size : " << q.size() << endl;
 		cout << "Front : " << q.front() << endl;
+		cout << "Back : " << q.back() << endl;
 		q.pop();
 	}
 }

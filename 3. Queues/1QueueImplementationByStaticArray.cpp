@@ -12,7 +12,7 @@ class Queue
     int capacity;
 
     public:
-
+    // checking full : rear == (front-1)%(capacity-1);
     Queue(int s)
     {
         data = new int[s];

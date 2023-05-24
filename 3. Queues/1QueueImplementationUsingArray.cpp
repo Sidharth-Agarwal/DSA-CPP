@@ -69,7 +69,7 @@ class Queue
         }
     }
 
-    int front()
+    int getFront()
     {
         if(isEmpty())
         {
@@ -94,7 +94,7 @@ int main()
     q.enqueue(50);
     q.enqueue(60);
 
-    cout<<q.front()<<endl;
+    cout<<q.getFront()<<endl;
     cout<<q.dequeue()<<endl;
     cout<<q.dequeue()<<endl;
     cout<<q.dequeue()<<endl;

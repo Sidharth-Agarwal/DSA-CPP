@@ -4,6 +4,62 @@
 
 using namespace std;
 
+// Using queue
+// vector<long long> printFirstNegativeInteger(long long int arr[], long long int n, long long int k)
+// {
+//     queue<long long int> dq;
+//     vector<long long> ans;
+    
+//     // process the first window of size k
+//     for(int i=0;i<k;i++)
+//     {
+//         if(arr[i] < 0)
+//         {
+//             dq.push(i);   
+//         }
+//     }
+    
+//     // store answer of first k sized window
+//     if(dq.size() > 0)
+//     {
+//         ans.push_back(arr[dq.front()]);
+//     }
+//     else
+//     {
+//         ans.push_back(0);
+//     }
+    
+    
+//     // process the remaining windows
+//     for(int i=k;i<n;i++)
+//     {
+//         // removal
+//         if(!dq.empty() && i-dq.front() >= k)
+//         {
+//             dq.pop();
+//         }
+        
+//         // addition
+//         if(arr[i] < 0)
+//         {
+//             dq.push(i);
+//         }
+        
+//         // ans store
+//         if(dq.size() > 0)
+//         {
+//             ans.push_back(arr[dq.front()]);
+//         }
+//         else
+//         {
+//             ans.push_back(0);
+//         }
+//     }
+    
+//     return ans;
+// }
+
+// Using De-queue
 vector<long long> printFirstNegativeInteger(long long int arr[], long long int n, long long int k)
 {
     deque<long long int> dq;

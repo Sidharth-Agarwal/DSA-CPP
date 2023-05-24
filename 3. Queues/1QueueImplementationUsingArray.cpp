@@ -36,6 +36,7 @@ class Queue
         if(rear == capacity)
         {
             cout << "Queue is full!";
+            return;
         }
 
         else

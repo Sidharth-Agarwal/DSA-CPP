@@ -34,7 +34,7 @@ class Queue
 
     int getSize()
     {
-        return 0;
+        return size;
     }
 
     bool isEmpty()

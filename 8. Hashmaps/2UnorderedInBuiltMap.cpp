@@ -61,6 +61,7 @@ int main()
 
     // Find
     string key = "Hiii";
+    cout << "Finding Key : ";
     if(map.find(key) != map.end())
     {
         cout << key << endl;

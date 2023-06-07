@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
     // Creating
+    
     // Inserting directly into the map
     unordered_map<string, int> map = {{"Hiii",10}};
     

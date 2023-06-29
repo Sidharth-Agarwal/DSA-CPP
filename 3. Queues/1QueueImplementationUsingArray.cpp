@@ -94,6 +94,7 @@ int main()
     q.enqueue(40);
     q.enqueue(50);
     q.enqueue(60);
+    q.enqueue(70);
 
     cout<<q.getFront()<<endl;
     cout<<q.dequeue()<<endl;

@@ -34,7 +34,7 @@ int main()
     int x;
 
     cout<<"Enter the element to search : ";
-    cin>>n;
+    cin>>x;
 
     int index = linearSearch(arr,n,x);
 
@@ -44,7 +44,6 @@ int main()
     }
     else
     {
-        cout<<"Index of the element is : "<<x;
+        cout<<"Index of the element is : "<<index;
     }
-
 }

@@ -1,4 +1,4 @@
-// Using Hash Sets
+// Using 2 Pointers
 
 #include<iostream>
 #include<bits/stdc++.h>
@@ -8,23 +8,18 @@ using namespace std;
 
 int removeDuplicates(int *arr, int n)
 {
-    set<int> hashSet;
+    int i = 0;
 
-    for(int i=0;i<n;i++)
+    for(int j=1;j<n;j++)
     {
-        hashSet.insert(arr[i]);
+        if(arr[i]!=arr[j])
+        {
+            i++;
+            arr[i] = arr[j];
+        }
     }
-
-    int size = hashSet.size();
     
-    int j = 0;
-
-    for(auto i:hashSet)
-    {
-        arr[j++] = i;
-    }
-
-    return size;
+    return i+1;
 }
 
 int main()

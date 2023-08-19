@@ -4,25 +4,15 @@ using namespace std;
 
 int missingNumber(int *arr, int N) 
 {
-    for (int i = 1; i <= N; i++)
-    {
-        int flag = 0;
+    int xor1 = 0;
+    int xor2 = 0;
 
-        for (int j = 0; j < N - 1; j++) 
-        {
-            if (arr[j] == i) 
-            {
-                flag = 1;
-                break;
-            }
-        }
-        
-        if (flag == 0)
-        {
-            return i;
-        }
+    for(int i=0;i<N-1;i++)
+    {
+        xor2 = xor2^arr[i];
+        xor1 = xor1^(i+1);
     }
-    return -1;
+    xor1 = xor1^N;
 }
 
 int main()
@@ -40,7 +30,7 @@ int main()
         cin>>arr[i];
     }
 
-    int ans = missingNumber(arr, n);
+    int ans = missingNumber(arr, n+1);
 
     cout << "The missing number is: " << ans << endl;
 

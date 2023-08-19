@@ -4,25 +4,7 @@ using namespace std;
 
 int missingNumber(int *arr, int N) 
 {
-    for (int i = 1; i <= N; i++)
-    {
-        int flag = 0;
-
-        for (int j = 0; j < N - 1; j++) 
-        {
-            if (arr[j] == i) 
-            {
-                flag = 1;
-                break;
-            }
-        }
-        
-        if (flag == 0)
-        {
-            return i;
-        }
-    }
-    return -1;
+    
 }
 
 int main()

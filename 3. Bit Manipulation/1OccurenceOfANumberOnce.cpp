@@ -1,4 +1,5 @@
 // XOR Approach
+// Bit Manipulation
 
 #include<iostream>
 

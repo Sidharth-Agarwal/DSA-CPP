@@ -17,4 +17,6 @@ int main()
     int mask = 1<<i;
 
     n = (n|mask);
+
+    cout<<"The output is : "<<n;
 }

@@ -14,8 +14,7 @@ int main()
     cout<<"Enter the value of i : ";
     cin>>i;
 
-    int mask = ~(1<<i);
-    n = (n & mask);
+    int ans = (n&(n-1));
 
-    cout<<"The output is : "<<n;
+    cout<<"The output is : "<<ans;
 }

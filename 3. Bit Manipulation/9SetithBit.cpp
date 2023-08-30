@@ -16,5 +16,5 @@ int main()
 
     int mask = 1<<i;
 
-    int ans = (n|mask);
+    n = (n|mask);
 }

@@ -59,7 +59,7 @@ void print(Node* head)
     }
 }
 
-void insert(Node* &head,int i, int data)
+void insertNode(Node* &head,int i, int data)
 {   
     // If linked list is empty
     if(head == NULL)
@@ -109,7 +109,7 @@ int main()
     cout<<"Enter the position of the data : ";
     cin>>i;
 
-    insert(head,i,data);
+    insertNode(head,i,data);
 
     cout<<"Updated linked list is : ";
     print(head);
